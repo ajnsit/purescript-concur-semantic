@@ -1,0 +1,23 @@
+{
+  "name": "purescript-concur-semantic",
+  "version": "0.1.0",
+  "description": "Concur implementation for Purescript, with React bindings",
+  "license": "MIT",
+  "repository": "ajnsit/purescript-concur-react",
+  "author": {
+    "name": "Anupam Jain",
+    "email": "ajnsit@gmail.com"
+  },
+  "files": [],
+  "scripts": {
+    "build-psc": "pulp --psc-package browserify --main Main --to html/index.js",
+    "build": "pulp browserify --main Main --to html/index.js"
+  },
+  "dependencies": {
+    "semantic-ui-react": "^0.79.0"
+  },
+  "devDependencies": {
+    "react": "^15.6.2",
+    "react-dom": "^15.6.2"
+  }
+}
