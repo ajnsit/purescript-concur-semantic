@@ -12,7 +12,7 @@
     "url": "git://github.com/ajnsit/purescript-concur-semantic.git"
   },
   "dependencies": {
-    "purescript-concur": "/Volumes/Dev/foss/purescript-concur",
+    "purescript-concur-react": "^0.1.0",
     "purescript-react": "^5.1.0",
     "purescript-react-dom": "^5.0.0",
     "purescript-options": "^3.1.0"
