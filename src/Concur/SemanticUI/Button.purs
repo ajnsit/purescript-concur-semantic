@@ -18,16 +18,16 @@ import React (ReactClass, ReactElement, createElement)
 -- Wrap a button around a widget
 -- Returns a `Left unit on click events.
 -- Or a `Right a` when the inner `Widget HTML a` ends.
-wrapButton :: forall a. Options ButtonOption -> Widget HTML a -> Widget HTML (Either Unit a)
-wrapButton props w = elSemanticEvent (\h -> onClick := (mkHandler (runIOSync' (h unit)))) button props w
+button :: forall a. Options ButtonOption -> Widget HTML a -> Widget HTML (Either Unit a)
+button props w = elSemanticEvent (\h -> onClick := (mkHandler (runIOSync' (h unit)))) buttonTag props w
 
 -- Like a wrapButton, but takes no props
-wrapButton' :: forall a. Widget HTML a -> Widget HTML (Either Unit a)
-wrapButton' = wrapButton mempty
+button' :: forall a. Widget HTML a -> Widget HTML (Either Unit a)
+button' = button mempty
 
 -- Specialised button with only static children
 displayButton :: Options ButtonOption -> (forall a. Widget HTML a) -> Widget HTML Unit
-displayButton props d = either id id <$> wrapButton props d
+displayButton props d = either id id <$> button props d
 
 -- Like a displayButton, but takes no props
 displayButton' :: (forall a. Widget HTML a) -> Widget HTML Unit
@@ -45,8 +45,8 @@ newtype ButtonProps = ButtonProps Foreign
 buttonProps :: Options ButtonOption -> ButtonProps
 buttonProps = ButtonProps <<< options
 
-button :: SemanticUITag ButtonOption
-button opts = createElement buttonClass (buttonProps opts)
+buttonTag :: SemanticUITag ButtonOption
+buttonTag opts = createElement buttonClass (buttonProps opts)
 
 -------------------------------------------------------------------------------
 -- OPTIONS
@@ -81,8 +81,8 @@ color = foreignOpt "color"
 compact :: Option ButtonOption (Boolean)
 compact = opt "compact"
 
--- content :: Option ButtonOption content
--- content = opt "content"
+content :: Option ButtonOption (String)
+content = opt "content"
 
 disabled :: Option ButtonOption (Boolean)
 disabled = opt "disabled"
