@@ -36,7 +36,7 @@ buttonContentTag opts = createElement buttonContentClass (buttonContentProps opt
 -- OPTIONS
 
 as :: Option ButtonContentOption (String)
-as = opt "as" -- custom
+as = opt "as"
 
 -- children :: Option ButtonContentOption children
 -- children = opt "children"

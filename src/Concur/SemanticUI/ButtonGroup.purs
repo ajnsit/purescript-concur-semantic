@@ -36,7 +36,7 @@ buttonGroupTag opts = createElement buttonGroupClass (buttonGroupProps opts)
 -- OPTIONS
 
 as :: Option ButtonGroupOption (String)
-as = opt "as" -- custom
+as = opt "as"
 
 attached :: Option ButtonGroupOption (Edge)
 attached = foreignOpt "attached"
@@ -59,8 +59,8 @@ color = foreignOpt "color"
 compact :: Option ButtonGroupOption (Boolean)
 compact = opt "compact"
 
-ontent :: Option ButtonGroupOption (String)
-ontent = opt "content"
+content :: Option ButtonGroupOption (String)
+content = opt "content"
 
 floated :: Option ButtonGroupOption (Horiz)
 floated = foreignOpt "floated"
@@ -98,5 +98,6 @@ toggle = opt "toggle"
 vertical :: Option ButtonGroupOption (Boolean)
 vertical = opt "vertical"
 
+-- Can be between 1 and 16
 widths :: Option ButtonGroupOption (Int)
 widths = opt "widths"
