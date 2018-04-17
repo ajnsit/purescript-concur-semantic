@@ -2,19 +2,31 @@ module Concur.SemanticUI.Menu where
 
 import Prelude
 
-import Concur.Core (Widget)
-import Concur.React (HTML, el)
+import Concur.Core (Widget, orr)
+import Concur.React (HTML, elp)
+import Concur.React.DOM (text)
 import Concur.SemanticUI.Common (ChildIcons, Color, Edge, EventHandlerOpt, Horiz, SemanticUITag, Size, Tabular, foreignOpt)
+import Concur.SemanticUI.MenuItem (menuItem)
+import Concur.SemanticUI.MenuItem as MenuItem
+import Data.Either (either)
 import Data.Foreign (Foreign)
-import Data.Options (Option, Options, opt, options)
+import Data.Monoid (mempty)
+import Data.Options (Option, Options, opt, options, (:=))
+import Data.Tuple (Tuple(..))
 import React (ReactClass, createElement)
 
 -------------------------------------------------------------------------------
 -- HIGH LEVEL
 
--- Wrap a menu around items
-menu :: forall a. Options MenuOption -> Widget HTML a -> Widget HTML a
-menu props w = el (menuTag props) w
+-- A Simple no-frills menu widget
+simpleMenu :: forall a. Eq a => Show a => Array (Tuple a String) -> a -> Widget HTML a
+simpleMenu = widgetMenu <<< map (map text)
+
+-- Like simpleMenu, but allows arbitrary widgets as menu items
+widgetMenu :: forall a. Show a => Eq a => Array (Tuple a (Widget HTML a)) -> a -> Widget HTML a
+widgetMenu items activeItem = elp menuTag mempty (orr (map mitem items))
+  where
+    mitem (Tuple k w) = either (const k) id <$> menuItem (MenuItem.name := (show k) <> MenuItem.active := (activeItem == k)) w
 
 -------------------------------------------------------------------------------
 -- LOW LEVEL
@@ -98,8 +110,8 @@ stackable = opt "stackable"
 tabular :: Option MenuOption (Tabular)
 tabular = foreignOpt "tabular"
 
-text :: Option MenuOption (Boolean)
-text = opt "text"
+textOnly :: Option MenuOption (Boolean)
+textOnly = opt "text"
 
 vertical :: Option MenuOption (Boolean)
 vertical = opt "vertical"

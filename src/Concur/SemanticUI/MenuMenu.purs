@@ -2,13 +2,22 @@ module Concur.SemanticUI.MenuMenu where
 
 import Prelude
 
+import Concur.Core (Widget)
+import Concur.React (HTML, elp)
 import Concur.SemanticUI.Common (Horiz, foreignOpt)
 import Data.Foreign (Foreign)
+import Data.Monoid (mempty)
 import Data.Options (Option, Options, opt, options)
 import React (ReactClass, ReactElement, createElement)
 
 -------------------------------------------------------------------------------
 -- HIGH LEVEL
+
+menuMenu :: forall a. Options MenuMenuOption -> Widget HTML a -> Widget HTML a
+menuMenu = elp menuMenuTag
+
+menuMenu' :: forall a. Widget HTML a -> Widget HTML a
+menuMenu' = menuMenu mempty
 
 -------------------------------------------------------------------------------
 -- LOW LEVEL

@@ -21,7 +21,7 @@ import React (ReactClass, ReactElement, createElement)
 button :: forall a. Options ButtonOption -> Widget HTML a -> Widget HTML (Either Unit a)
 button props w = elSemanticEvent (\h -> onClick := (mkHandler (runIOSync' (h unit)))) buttonTag props w
 
--- Like a wrapButton, but takes no props
+-- Like a button, but takes no props
 button' :: forall a. Widget HTML a -> Widget HTML (Either Unit a)
 button' = button mempty
 
