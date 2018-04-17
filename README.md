@@ -25,7 +25,7 @@ helloWidget = do
   helloWidget
 ```
 
-### [Demo of the result](https://ajnsit.github.io/purescript-concur-semantic/).
+3. ***WORK IN PROGRESS** Look at the official [Demo](https://ajnsit.github.io/purescript-concur-semantic/) to see the available widgets.
 
 
 ## Attribution
